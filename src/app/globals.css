@@ -10,44 +10,28 @@
 body {
   min-height: 100svh;
   color: var(--text-color);
-  background-image: url("../../public/wallpaper.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
+
 }
 
 @layer utilities {
-  .bg-cocktail {
-    position: relative;
-    background-image: url('../../public/bg-alt.jpg');
+  .bg-wall {
+    background-image: url("../../public/wallpaper.webp");
     background-size: cover;
     background-repeat: no-repeat;
-    box-shadow: 10px 0px 150px 50px #000, inset 0px 0px 100px 50px #000;
-  }
-  .bg-overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #00000088;
-    backdrop-filter: blur(2px);
   }
 
   .hero-cocktail {
     position: absolute;
-    top: 4rem;
     transform: rotate(18deg);
-    --neon-color: #eeff00;
+    --neon-color: #39FF14;
     filter: drop-shadow(0rem 0rem 4px var(--text-color))
       drop-shadow(0rem 0rem 1px var(--text-color))
       drop-shadow(0rem 0rem 9px var(--neon-color))
       drop-shadow(0rem 0rem 40px var(--neon-color));    
   }
   .hero-sign {
-    --neon-color: #ff1900;
+    --neon-color: #FF69B4;
     position: absolute;
-    bottom: 1rem;
-    right: 10rem;
     transform: rotate(-18deg);
     border: 1px solid #fff;
     border-radius: 12px;
@@ -58,12 +42,12 @@ body {
       drop-shadow(0rem 0rem 40px var(--neon-color));    
   }
   .neon-icon-flicker {
-    animation: flicker-icon 3s infinite;
+    animation: flicker-icon 3s 0s 2;
   }
 
   .neon-blue {
     color: var(--text-color);
-    --neon-color: #4626d5; /* Override the default neon color with specific color */
+    --neon-color: #00F0FF; /* Override the default neon color with specific color */
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
     0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
     0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
@@ -76,7 +60,7 @@ body {
     0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
   }
   .neon-flicker {
-    animation: flicker-text 3s infinite .2s;
+    animation: flicker-text 3s .2s 2;
   }
   
   @keyframes flicker-text {
@@ -99,8 +83,8 @@ body {
     65%,
     69.99% {
       text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
-        0 0 20px var(--neon-color), 0 0 35px var(--neon-color),
-        0 0 30px var(--neon-color), 0 0 50px var(--neon-color);
+        0 0 30px var(--neon-color), 0 0 60px var(--neon-color),
+        0 0 70px var(--neon-color), 0 0 90px var(--neon-color);
     }
   }
 
