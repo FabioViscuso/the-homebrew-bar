@@ -46,11 +46,20 @@ body {
     drop-shadow(0rem 0rem 40px var(--neon-color));  
   }
   .neon-button-red {
-    --neon-color: #ff0000;
+    --neon-color: #5c0000;
+    --text-color: #aaa;
+    color: #eee;
     filter: drop-shadow(0rem 0rem 4px var(--text-color))
     drop-shadow(0rem 0rem 1px var(--text-color))
     drop-shadow(0rem 0rem 9px var(--neon-color))
-    drop-shadow(0rem 0rem 40px var(--neon-color));  
+    drop-shadow(0rem 0rem 40px var(--neon-color));
+    transition: all .2s linear;
+  }
+  .neon-button-red:hover {
+    --neon-color: #ff0000;
+    color: #fff;
+    transform: translateY(-3px);
+    animation: flicker-icon 1s 0s 1;
   }
 
   .neon-blue {
