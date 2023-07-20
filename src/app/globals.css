@@ -83,6 +83,9 @@ body {
   .neon-flicker {
     animation: flicker-text 3s .2s infinite;
   }
+  .bounce {
+    animation: bounce 2s infinite ease-in-out;
+  }
   
   @keyframes flicker-text {
     0%,
@@ -134,5 +137,20 @@ body {
       drop-shadow(0rem 0rem 2px var(--neon-color))
       drop-shadow(0rem 0rem 20px var(--neon-color));
     }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-12px);
+  }
+  30% {
+    transform: translateY(0px);
+  }
+  40% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-12px);
   }
 }
