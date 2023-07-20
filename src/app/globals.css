@@ -35,10 +35,23 @@ body {
 
   .hero-cocktail {
     position: absolute;
-    top: 30px;
-    left: 250px;
+    top: 4rem;
     transform: rotate(18deg);
     --neon-color: #eeff00;
+    filter: drop-shadow(0rem 0rem 4px var(--text-color))
+      drop-shadow(0rem 0rem 1px var(--text-color))
+      drop-shadow(0rem 0rem 9px var(--neon-color))
+      drop-shadow(0rem 0rem 40px var(--neon-color));    
+  }
+  .hero-sign {
+    --neon-color: #ff1900;
+    position: absolute;
+    bottom: 1rem;
+    right: 10rem;
+    transform: rotate(-18deg);
+    border: 1px solid #fff;
+    border-radius: 12px;
+    padding: 1rem 2rem;
     filter: drop-shadow(0rem 0rem 4px var(--text-color))
       drop-shadow(0rem 0rem 1px var(--text-color))
       drop-shadow(0rem 0rem 9px var(--neon-color))

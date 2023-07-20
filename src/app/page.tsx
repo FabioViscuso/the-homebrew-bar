@@ -10,11 +10,12 @@ export default function Landing() {
     <main
       className={` flex min-h-screen flex-row items-center justify-between `}
     >
-      <div className={"h-full w-full flex items-center justify-center "}>
+      <div className={" relative h-full w-full flex items-center justify-center "}>
         <h1
-          className={` relative ${sacramento.className} [font-size:clamp(3rem,10vmax,10rem)] neon neon-flicker neon-blue leading-tight `}
+          className={` ${sacramento.className} [font-size:clamp(3rem,10vmax,10rem)] neon neon-flicker neon-blue leading-tight `}
         >
           The<br></br> Homebrew<br></br> Bar
+        </h1>
           <Image
             src={icons.cocktailIcon}
             width={128}
@@ -22,7 +23,7 @@ export default function Landing() {
             alt=""
             className={" w-[clamp(3rem,10vmax,9rem)] hero-cocktail neon-icon-flicker "}
           />
-        </h1>
+          <p className={`${sacramento.className} hero-sign [font-size:clamp(1rem,10vmax,3rem)] neon-icon-flicker `}>Always open</p>
       </div>
       <div className={" shrink-0 basis-[35vw] h-[100svh] bg-cocktail "}>
         <div className="bg-overlay p-6 [text-shadow:0px_0px_2px_#fff] ">
