@@ -2,6 +2,7 @@ import { Poiret_One, Sacramento } from "next/font/google";
 import Image from "next/image";
 import { icons } from "@/lib/iconsImport";
 import Link from "next/link";
+import Scroller from "@/components/landing/Scroller";
 
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
@@ -9,11 +10,11 @@ const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 export default function Landing() {
   return (
     <main
-      className={` bg-wall overflow-y-scroll snap-y snap-mandatory flex h-screen flex-col lg:flex-row items-center justify-between select-none `}
+      className={` bg-wall overflow-y-scroll snap-y snap-mandatory flex h-[100dvh] flex-col lg:flex-row items-center justify-between select-none `}
     >
       <div
         className={
-          " relative snap-start grow-0 shrink-0 basis-full mx-auto lg:basis-0 h-[100svh] w-full flex items-center justify-center "
+          " relative snap-start grow-0 shrink-0 basis-full mx-auto lg:basis-0 h-[100dvh] w-full flex items-center justify-center "
         }
       >
         <h1
@@ -31,30 +32,28 @@ export default function Landing() {
           }
         />
         <p
-          className={`${sacramento.className} hero-sign [font-size:clamp(1rem,2vmin+1rem,5rem)] neon-button-border neon-button-pink neon-icon-flicker bottom-44 md:bottom-22 lg:bottom-18 xl:bottom-24 right-10 md:right-32 lg:-right-12 `}
+          className={`${sacramento.className} hero-sign [font-size:clamp(1rem,2vmin+1rem,5rem)] neon-button-border neon-button-pink neon-icon-flicker bottom-36 md:bottom-22 lg:bottom-18 xl:bottom-24 right-10 md:right-32 lg:-right-12 `}
         >
           Always open
         </p>
-        <p className={`text-3xl [text-shadow:0px_0px_3px_#fff] absolute flex gap-5 items-baseline flex-nowrap whitespace-nowrap lg:hidden bottom-10 left-1/2 -translate-x-1/2 `}>
-          Scroll for more
-          <span className={" inline-block w-2 h-2 bg-white rounded-full [box-shadow:0px_0px_10px_4px_#fff] ring-offset-0 bounce "}></span>
-        </p>
+        <Scroller />
       </div>
       <div
+        id="part-2"
         className={
-          " snap-start shrink-0 grow-0 basis-full lg:basis-[35vw] h-[100svh] w-full [text-shadow:0px_0px_2px_#fff] py-8 px-8 bg-black bg-opacity-20 [backdrop-filter:blur(2px)] flex flex-col "
+          " snap-start shrink-0 grow-0 basis-full lg:basis-[35vw] h-[100dvh] w-full [text-shadow:0px_0px_2px_#fff] py-8 px-8 bg-black bg-opacity-20 [backdrop-filter:blur(2px)] flex flex-col "
         }
       >
-        <p className=" text-2xl md:text-3xl lg:text-2xl xl:text-3xl ">
+        <p className=" text-xl md:text-3xl lg:text-2xl xl:text-3xl ">
           Expecting guests? Want to impress friends or surprise your significant
           other for a special occasion? Or, why not dedicate a moment just for
           yourself?
         </p>
-        <p className="  mt-6 text-2xl md:text-3xl lg:text-2xl xl:text-3xl ">
+        <p className="  mt-6 text-xl md:text-3xl lg:text-2xl xl:text-3xl ">
           Embark on a journey to become an experienced barman, and unlock the
           secrets of cocktail making, in the comfort of your home or on the go.
         </p>
-        <p className=" mt-6 text-2xl md:text-3xl lg:text-2xl xl:text-3xl ">
+        <p className=" mt-6 text-xl md:text-3xl lg:text-2xl xl:text-3xl ">
           Discover new recipes, save them for later, get inspired. For free!
         </p>
         <Link href={"/dashboard"} className={`${sacramento.className} text-center text-3xl md:text-5xl lg:text-4xl xl:text-6xl mt-auto neon-button-border neon-button-red `}>

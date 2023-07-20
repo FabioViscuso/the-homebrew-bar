@@ -10,7 +10,8 @@
 body {
   min-height: 100svh;
   color: var(--text-color);
-
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 @layer utilities {
