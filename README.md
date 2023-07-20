@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Homebrew Bar
 
-## Getting Started
+## Project scope
+- For the developer: This project will incrementally introduce new features in order to test and build skills in the React ecosystem, as well as different development patterns etc.
 
-First, run the development server:
+- For the user: This project is aimed towards beginners in the cocktails/mixology business. By looking for recipes by name or asking for a random one, it's possible to learn something new and get inspired.
+The user can save any interesting recipe among the favorites and manage them.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## User flow
+Users, especially the new ones, will visit the landing page where they can get a taste of the app's aesthetics and goal. A well-visible CTA on the main button will invite the user to try out the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The dashboard is made of 4 main components:
+- The navbar, which persists among different views.
+- View #1: Explore - where the users searches for cocktails either by entering the name in the input bar or by clicking on the "random" button. Each recipe card contains a button to show a modal with the full info and an "add/remove from favorites" button.
+- View #2: Favorites - Here the user can review the recipes saved from the Explore view. The cards have the same functionality as in the Explore view. It's possible to clear all the favorites with a single click of a button.
+- View #3: About - Act like some sort of footer and shows simple information about the developer, the stack used for this project, as well as a link to the GitHub repository for those who want to take a look at the code.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Directory structure
+-src
+    -app
+        -dashboard 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    -components
+        -dashboard   -landing
+            -views
 
-## Learn More
+    -lib
 
-To learn more about Next.js, take a look at the following resources:
+    -store
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Explanation:
+Names in the same indentation level are siblings, further indented name beneath them are subfolders
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Like most Next.js project, the root folder contains configuration files and dependencies, as well as the builds.
 
-## Deploy on Vercel
+The main src folder contains the whole project's code.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app folder is required by Next.js, as it's the entry point for its own router. Inside of it we find the core assets as well as the routes for the project's pages. In this case, besides the landing page there's currently another one, known as the dashboard.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The components folder contains shared components as well as page-specific ones found in the respective subfolders. In particular, the dashboard subfolder contains a views subfolder which contains the code for each of the 3 views that comprise the dashboard experience
+
+The lib folder contains function whose utility is shared among views and components
+
+The store folder contains the main store file as well as the possible slices
