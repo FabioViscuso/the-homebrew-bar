@@ -53,8 +53,8 @@ export default function Landing() {
         <p className=" mt-6 text-2xl md:text-3xl lg:text-2xl xl:text-3xl ">
           Discover new recipes, save them for later, get inspired. For free!
         </p>
-        <Link href={'/dashboard'} className={`${sacramento.className} text-center text-3xl md:text-5xl lg:text-4xl xl:text-6xl mt-auto neon-button-border neon-button-red `}>
-          Let's start mixing!
+        <Link href={"/dashboard"} className={`${sacramento.className} text-center text-3xl md:text-5xl lg:text-4xl xl:text-6xl mt-auto neon-button-border neon-button-red `}>
+          Let&apos;s start mixing!
         </Link>
       </div>
     </main>
