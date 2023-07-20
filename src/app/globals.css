@@ -16,10 +16,27 @@ body {
 }
 
 @layer utilities {
+  .bg-cocktail {
+    position: relative;
+    background-image: url('../../public/bg-alt.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 10px 0px 150px 50px #000, inset 0px 0px 100px 50px #000;
+  }
+  .bg-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000088;
+    backdrop-filter: blur(2px);
+  }
+
   .hero-cocktail {
     position: absolute;
     top: 30px;
-    left: 200px;
+    left: 250px;
     transform: rotate(18deg);
     --neon-color: #eeff00;
     filter: drop-shadow(0rem 0rem 4px var(--text-color))
@@ -46,7 +63,7 @@ body {
     0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
   }
   .neon-flicker {
-    animation: flicker-text 3s infinite;
+    animation: flicker-text 3s infinite .2s;
   }
   
   @keyframes flicker-text {
