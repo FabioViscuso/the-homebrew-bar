@@ -53,7 +53,7 @@ export default function Landing() {
         <p className=" text-2xl mt-6 xl:text-3xl ">
           And the best thing: it’s free!
         </p>
-        <Link href={'/dashboard'} className={`${sacramento.className} text-center text-6xl mt-auto neon-button-border neon-button-red `}>
+        <Link href={'/dashboard'} className={`${sacramento.className} text-center text-3xl md:text-5xl lg:text-6xl mt-auto neon-button-border neon-button-red `}>
           Let's start mixing!
         </Link>
       </div>
