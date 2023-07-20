@@ -3,18 +3,154 @@
 @tailwind utilities;
 
 :root {
-  --text-color: 255, 255, 255;
-  --neon-green: ;
-  --neon-blue: ;
-  --neon-white: ;
-  --neon-red: ;
-  --neon-fuchsia: ;
+  --text-color: #fff;
+  --neon-color: #fff;
 }
 
 body {
   min-height: 100svh;
-  color: rgb(var(--text-color));
-  background-image: url('../../public/wallpaper.webp');
-  background-size: cover;
-  background-repeat: no-repeat;
+  color: var(--text-color);
+
+}
+
+@layer utilities {
+  .bg-wall {
+    background-image: url("../../public/wallpaper.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .hero-cocktail {
+    position: absolute;
+    transform: rotate(18deg);
+    --neon-color: #39FF14;
+    filter: drop-shadow(0rem 0rem 4px var(--text-color))
+      drop-shadow(0rem 0rem 1px var(--text-color))
+      drop-shadow(0rem 0rem 9px var(--neon-color))
+      drop-shadow(0rem 0rem 40px var(--neon-color));    
+  }
+  .hero-sign {
+    position: absolute;
+    transform: rotate(-18deg);
+  }
+  .neon-button-border {
+    border: 1px solid #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+  }
+  .neon-button-pink {
+    --neon-color: #FF69B4;
+    filter: drop-shadow(0rem 0rem 4px var(--text-color))
+    drop-shadow(0rem 0rem 1px var(--text-color))
+    drop-shadow(0rem 0rem 9px var(--neon-color))
+    drop-shadow(0rem 0rem 40px var(--neon-color));  
+  }
+  .neon-button-red {
+    --neon-color: #5c0000;
+    --text-color: #aaa;
+    color: #eee;
+    filter: drop-shadow(0rem 0rem 4px var(--text-color))
+    drop-shadow(0rem 0rem 1px var(--text-color))
+    drop-shadow(0rem 0rem 9px var(--neon-color))
+    drop-shadow(0rem 0rem 40px var(--neon-color));
+    transition: all .2s linear;
+  }
+  .neon-button-red:hover {
+    --neon-color: #ff0000;
+    color: #fff;
+    transform: translateY(-3px);
+    animation: flicker-icon 1s 0s 1;
+  }
+
+  .neon-blue {
+    color: var(--text-color);
+    --neon-color: #00F0FF; /* Override the default neon color with specific color */
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+    0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
+    0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
+  }
+  .neon-red {
+    color: var(--text-color);
+    --neon-color: #ff0000; /* Override the default neon color with specific color */
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+    0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
+    0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
+  }  
+  
+  .neon-icon-flicker {
+    animation: flicker-icon 3s 0s infinite;
+  }
+  .neon-flicker {
+    animation: flicker-text 3s .2s infinite;
+  }
+  .bounce {
+    animation: bounce 2s infinite ease-in-out;
+  }
+  
+  @keyframes flicker-text {
+    0%,
+    19.99%,
+    22%,
+    62.99%,
+    64%,
+    64.99%,
+    70%,
+    100% {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+        0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
+        0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
+    }
+    20%,
+    21.99%,
+    63%,
+    63.99%,
+    65%,
+    69.99% {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+        0 0 30px var(--neon-color), 0 0 60px var(--neon-color),
+        0 0 70px var(--neon-color), 0 0 90px var(--neon-color);
+    }
+  }
+
+  @keyframes flicker-icon {
+    0%,
+    19.99%,
+    22%,
+    62.99%,
+    64%,
+    64.99%,
+    70%,
+    100% {
+      filter: drop-shadow(0rem 0rem 4px var(--text-color))
+      drop-shadow(0rem 0rem 1px var(--text-color))
+      drop-shadow(0rem 0rem 9px var(--neon-color))
+      drop-shadow(0rem 0rem 40px var(--neon-color));
+    }
+    20%,
+    21.99%,
+    63%,
+    63.99%,
+    65%,
+    69.99% {
+      filter: drop-shadow(0rem 0rem 0px var(--text-color))
+      drop-shadow(0rem 0rem 1px var(--text-color))
+      drop-shadow(0rem 0rem 2px var(--neon-color))
+      drop-shadow(0rem 0rem 20px var(--neon-color));
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-12px);
+  }
+  30% {
+    transform: translateY(0px);
+  }
+  40% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-12px);
+  }
 }
