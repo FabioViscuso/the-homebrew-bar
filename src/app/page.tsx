@@ -10,11 +10,11 @@ const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 export default function Landing() {
   return (
     <main
-      className={` bg-wall overflow-y-scroll snap-y snap-mandatory flex h-[100dvh] flex-col lg:flex-row items-center justify-between select-none `}
+      className={` bg-wall overflow-auto snap-y snap-mandatory flex h-[100dvh] flex-col lg:flex-row items-center justify-between select-none `}
     >
       <div
         className={
-          " relative snap-start grow-0 shrink-0 basis-full mx-auto lg:basis-0 h-[100dvh] w-full flex items-center justify-center "
+          " relative snap-start grow-0 shrink-0 basis-full mx-auto lg:basis-0 h-[100dvh] w-full flex items-start justify-center pt-24 "
         }
       >
         <h1
@@ -28,11 +28,11 @@ export default function Landing() {
           height={128}
           alt=""
           className={
-            " w-[clamp(3rem,10vmax,9rem)] hero-cocktail neon-icon-flicker top-60 lg:top-48 xl:top-32 xl:left-64 "
+            " w-[clamp(3rem,10vmax,9rem)] hero-cocktail neon-icon-flicker top-[8rem] md:top-22 lg:top-42 xl:top-32 xl:left-[15rem] "
           }
         />
         <p
-          className={`${sacramento.className} hero-sign [font-size:clamp(1rem,2vmin+1rem,5rem)] neon-button-border neon-button-pink neon-icon-flicker bottom-36 md:bottom-22 lg:bottom-18 xl:bottom-24 right-10 md:right-32 lg:-right-12 `}
+          className={`${sacramento.className} hero-sign [font-size:clamp(1rem,2vmin+1rem,5rem)] neon-button-border neon-button-pink neon-icon-flicker bottom-60 md:bottom-22 lg:bottom-18 xl:bottom-24 right-10 md:right-32 lg:-right-12 `}
         >
           Always open
         </p>
