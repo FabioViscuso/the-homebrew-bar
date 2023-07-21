@@ -9,16 +9,11 @@ import Explore from "@/components/dashboard/views/Explore";
 import Favorites from "@/components/dashboard/views/Favorites";
 import About from "@/components/dashboard/views/About";
 import HamburgerMenuModal from "@/components/dashboard/HamburgerMenuModal";
+import { Views } from "@/lib/types/DashboardViews";
 
 import { icons } from "@/lib/iconsImport";
 import { Sacramento } from "next/font/google";
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
-
-export enum Views {
-  Explore = "explore",
-  Favorites = "favorites",
-  About = "about",
-}
 
 export default function Landing() {
   const [currentView, setCurrentView] = useState<Views>(Views.Explore);

@@ -1,7 +1,7 @@
 "use client";
 
 import DashboardLink from "../../components/dashboard/DashboardLink";
-import { Views } from "@/app/dashboard/page";
+import { Views } from "@/lib/types/DashboardViews";
 
 import { Sacramento } from "next/font/google";
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
