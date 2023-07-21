@@ -10,7 +10,7 @@ export default function Explore() {
       <div className="flex items-center gap-24">
         <form className="flex flex-col gap-4">
           <input
-            className={`${poiret.className} text-2xl bg-black bg-opacity-40 [backdrop-filter:blur(10px)] text-[#fff] placeholder:text-white rounded-md w-[clamp(3rem,30vw,30rem)] neon-button-border `}
+            className={`${poiret.className} text-2xl bg-black bg-opacity-40 [backdrop-filter:blur(4px)] text-[#fff] placeholder:text-white rounded-md w-[clamp(3rem,30vw,30rem)] neon-button-border [box-shadow:0px_0px_40px_1px_#888] `}
             type="text"
             placeholder="Type here, try something like 'Mojito'"
           />
