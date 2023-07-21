@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 type ButtonProps = {
   id: string;
-  isActive: string;
+  currentView: string;
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
 };
@@ -10,7 +10,7 @@ type ButtonProps = {
 export function DashboardLink({
   children,
   id,
-  isActive,
+  currentView,
   onClick,
 }: ButtonProps) {
   return (
@@ -18,7 +18,7 @@ export function DashboardLink({
       id={id}
       onClick={onClick}
       className={` border-2 border-b-0 rounded-t-md ${
-        isActive === id ? "border-red-600" : "border-blue-600"
+        currentView === id ? "border-red-600" : "border-blue-600"
       } `}
     >
       {children}
