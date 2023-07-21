@@ -1,7 +1,7 @@
 "use client";
 
-import DashboardLink from "../../components/dashboard/DashboardLink";
 import { useState } from "react";
+import DashboardLink from "../../components/dashboard/DashboardLink";
 import Explore from "../../components/dashboard/views/Explore";
 import Favorites from "../../components/dashboard/views/Favorites";
 import About from "../../components/dashboard/views/About";
@@ -20,6 +20,7 @@ export default function Landing() {
     /* Since I'm passing Views values to the buttons as IDs, this is relatively safe */
     setCurrentView(ID as Views);
   };
+  
   return (
     <main className=" bg-wall flex min-h-screen flex-col items-center justify-between p-24 ">
       <nav className="fixed top-0 left-0 right-0 flex justify-start items-center gap-20 border-b">
@@ -37,9 +38,9 @@ export default function Landing() {
           About
         </DashboardLink>
       </nav>
-      {currentView === "explore" && <Explore />}
-      {currentView === "favorites" && <Favorites />}
-      {currentView === "about" && <About />}
+      {currentView === Views.Explore && <Explore />}
+      {currentView === Views.Favorites && <Favorites />}
+      {currentView === Views.About && <About />}
     </main>
   );
 }
