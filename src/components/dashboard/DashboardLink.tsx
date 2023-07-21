@@ -17,8 +17,8 @@ export function DashboardLink({
     <button
       id={id}
       onClick={onClick}
-      className={` border-2 border-b-0 rounded-t-md ${
-        currentView === id ? "border-red-600" : "border-blue-600"
+      className={`text-4xl neon-button-red ${
+        currentView === id && "[--neon-color:#ff0000] color-[#fff} "
       } `}
     >
       {children}
