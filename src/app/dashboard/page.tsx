@@ -29,7 +29,7 @@ export default function Landing() {
 
   return (
     <main className=" bg-wall flex min-h-screen flex-col items-center justify-between p-24 ">
-      <nav className={`${sacramento.className} fixed top-0 left-0 right-0 py-3 px-6 flex justify-between items-center border-b`}>
+      <nav className={`${sacramento.className} fixed top-0 left-0 right-0 py-3 px-6 flex justify-between items-center border-b-4 [box-shadow:0px_0px_200px_1px_#aaa] bg-black bg-opacity-40 [backdrop-filter:blur(1px)] `}>
         <div className="flex gap-5 items-center ">
             <h1 className={`${sacramento.className} text-4xl neon-blue mt-2 `}>The Homebrew Bar</h1>
             <Image src={icons.cocktailIcon} alt="" width={128} className=" w-12 neon-button-pink " />
