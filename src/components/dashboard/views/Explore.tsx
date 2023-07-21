@@ -1,34 +1,65 @@
-import { Poiret_One, Sacramento } from "next/font/google";
 import { FormEvent, MutableRefObject, useEffect, useRef } from "react";
+import useCocktailsStore from "@/store/store";
+
+import { Poiret_One, Sacramento } from "next/font/google";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 
 export default function Explore() {
   const inputValueRef: MutableRefObject<HTMLInputElement | null> = useRef(null);
 
-  const handleRandomValueSubmit = async (event: FormEvent) => {
-    event.preventDefault();
+  // state is ready, but I need the grid first
+  // const cocktails = useCocktailsStore((state) => state.cocktails);
+  const updateCocktails = useCocktailsStore((state) => state.updateCocktails);  
+
+  const syncState = (cocktails: []) => {
+    localStorage.removeItem('lastSearch');
+    localStorage.setItem('lastSearch', JSON.stringify(cocktails));
+    updateCocktails(cocktails);
+  }
+
+  /* Had to extract this one for use in the useEffect */
+  const returnRandomCocktail = async () => {
     const data = await fetch(
       "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-    );
-    const jsonData = await data.json();
-    const randomCocktail = jsonData.drinks;
+    )
+    const jsonData = await data.json()
+    const incomingRandomCocktail = jsonData.drinks;
+    
+    syncState(incomingRandomCocktail);
+  }
 
-    console.log(randomCocktail);
+  const handleRandomValueSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    returnRandomCocktail();
   };
 
+  /* 
+  TODO: future development will see this function a bit more generic.
+  TODO: as more filters are added, it will decide which endpoint to call with which data
+   */
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     const value = inputValueRef.current!.value.replaceAll(" ", "+");
     const data = await fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`
-    );
-    const jsonData = await data.json();
-    const cocktailList = jsonData.drinks;
+    )
+    const jsonData = await data.json()
+    const incomingCocktails = jsonData.drinks;
 
-    console.log(cocktailList)
+    syncState(incomingCocktails);
   };
+
+  /* To avoid unnecessary calls to the API, on each re-render  */
+  useEffect(() => {
+    const lastSearch: [] = JSON.parse(localStorage.getItem('lastSearch') as string);
+    if (lastSearch && lastSearch.length > 0) {
+      updateCocktails(lastSearch);
+    } else {
+      returnRandomCocktail();
+    }
+  }, [])
 
   return (
     <div
@@ -55,6 +86,7 @@ export default function Explore() {
           Surprise me!
         </button>
       </div>
+      <div>{/* Cocktails here, I need to setup the grid and the card component */}</div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </div>
   );
