@@ -1,6 +1,8 @@
 import { FormEvent, MutableRefObject, useEffect, useRef } from "react";
 import useCocktailsStore from "@/store/store";
 
+import { Cocktail } from "@/lib/types/CocktailObj";
+import CocktailCard from "../CocktailCard";
 import { Poiret_One, Sacramento } from "next/font/google";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
@@ -8,8 +10,7 @@ const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 export default function Explore() {
   const inputValueRef: MutableRefObject<HTMLInputElement | null> = useRef(null);
 
-  // state is ready, but I need the grid first
-  // const cocktails = useCocktailsStore((state) => state.cocktails);
+  const cocktails = useCocktailsStore((state) => state.cocktails);
   const updateCocktails = useCocktailsStore((state) => state.updateCocktails);  
 
   const syncState = (cocktails: []) => {
@@ -86,7 +87,9 @@ export default function Explore() {
           Surprise me!
         </button>
       </div>
-      <div>{/* Cocktails here, I need to setup the grid and the card component */}</div>
+      <div>{cocktails.map((cocktail: Cocktail) =>
+        <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
+      )}</div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </div>
   );
