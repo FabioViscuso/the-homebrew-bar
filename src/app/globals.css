@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --text-color: #fff;
   --neon-color: #fff;
+  --color-white: #fff;
 }
 
 ::selection {
@@ -30,7 +30,7 @@
 
 body {
   min-height: 100svh;
-  color: var(--text-color);
+  color: var(--color-white);
   scroll-behavior: smooth;
   overscroll-behavior: contain;
 }
@@ -42,58 +42,52 @@ body {
     background-repeat: no-repeat;
   }
 
-  .hero-cocktail {
-    position: absolute;
-    transform: rotate(18deg);
-    --neon-color: #39ff14;
-    filter: drop-shadow(0rem 0rem 4px var(--text-color))
-      drop-shadow(0rem 0rem 1px var(--text-color))
-      drop-shadow(0rem 0rem 9px var(--neon-color))
-      drop-shadow(0rem 0rem 40px var(--neon-color));
-  }
-  .hero-sign {
-    position: absolute;
-    transform: rotate(-18deg);
-  }
   .neon-button-border {
-    border: 2px solid #fff;
+    border: 2px solid var(--color-white);
     border-radius: 12px;
     padding: 1.5rem 2rem;
   }
+  .neon-button-green {
+    --neon-color: #39ff14;
+    filter: drop-shadow(0rem 0rem 4px var(--color-white))
+      drop-shadow(0rem 0rem 1px var(--color-white))
+      drop-shadow(0rem 0rem 9px var(--neon-color))
+      drop-shadow(0rem 0rem 40px var(--neon-color));
+  }
   .neon-button-pink {
     --neon-color: #ff69b4;
-    filter: drop-shadow(0rem 0rem 4px var(--text-color))
-      drop-shadow(0rem 0rem 1px var(--text-color))
+    filter: drop-shadow(0rem 0rem 4px var(--color-white))
+      drop-shadow(0rem 0rem 1px var(--color-white))
       drop-shadow(0rem 0rem 9px var(--neon-color))
       drop-shadow(0rem 0rem 40px var(--neon-color));
   }
   .neon-button-red {
     --neon-color: #5c0000;
-    --text-color: #aaa;
-    color: #eee;
-    filter: drop-shadow(0rem 0rem 4px var(--text-color))
-      drop-shadow(0rem 0rem 1px var(--text-color))
+    --color-white: #aaa;
+    filter: drop-shadow(0rem 0rem 4px var(--color-white))
+      drop-shadow(0rem 0rem 1px var(--color-white))
       drop-shadow(0rem 0rem 9px var(--neon-color))
       drop-shadow(0rem 0rem 40px var(--neon-color));
     transition: all 0.2s linear;
   }
   .neon-button-red:hover {
     --neon-color: #ff0000;
-    color: #fff;
+    --color-white: #fff;
+    color: var(--color-white);
     animation: flicker-icon 1s 0s 1;
   }
 
   .neon-blue {
-    color: var(--text-color);
+    color: var(--color-white);
     --neon-color: #00f0ff; /* Override the default neon color with specific color */
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+    text-shadow: 0 0 10px var(--color-white), 0 0 20px var(--color-white), 0 0 30px var(--color-white),
       0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
       0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
   }
   .neon-red {
-    color: var(--text-color);
+    color: var(--color-white);
     --neon-color: #ff0000; /* Override the default neon color with specific color */
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+    text-shadow: 0 0 10px var(--color-white), 0 0 20px var(--color-white), 0 0 30px var(--color-white),
       0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
       0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
   }
@@ -117,7 +111,7 @@ body {
     64.99%,
     70%,
     100% {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+      text-shadow: 0 0 10px var(--color-white), 0 0 20px var(--color-white), 0 0 30px var(--color-white),
         0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
         0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
     }
@@ -127,7 +121,7 @@ body {
     63.99%,
     65%,
     69.99% {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+      text-shadow: 0 0 10px var(--color-white), 0 0 20px var(--color-white), 0 0 30px var(--color-white),
         0 0 30px var(--neon-color), 0 0 60px var(--neon-color),
         0 0 70px var(--neon-color), 0 0 90px var(--neon-color);
     }
@@ -142,8 +136,8 @@ body {
     64.99%,
     70%,
     100% {
-      filter: drop-shadow(0rem 0rem 4px var(--text-color))
-        drop-shadow(0rem 0rem 1px var(--text-color))
+      filter: drop-shadow(0rem 0rem 4px var(--color-white))
+        drop-shadow(0rem 0rem 1px var(--color-white))
         drop-shadow(0rem 0rem 9px var(--neon-color))
         drop-shadow(0rem 0rem 40px var(--neon-color));
     }
@@ -153,8 +147,8 @@ body {
     63.99%,
     65%,
     69.99% {
-      filter: drop-shadow(0rem 0rem 0px var(--text-color))
-        drop-shadow(0rem 0rem 1px var(--text-color))
+      filter: drop-shadow(0rem 0rem 0px var(--color-white))
+        drop-shadow(0rem 0rem 1px var(--color-white))
         drop-shadow(0rem 0rem 2px var(--neon-color))
         drop-shadow(0rem 0rem 20px var(--neon-color));
     }
