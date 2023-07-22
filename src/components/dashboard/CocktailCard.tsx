@@ -77,12 +77,12 @@ export function CocktailCard({ cocktail }: CocktailCardProps) {
       </div>
 
       <p className="instructions text-lg">
-        {cocktail.strInstructions.length < 150
+        {cocktail.strInstructions.length < 120
           ? cocktail.strInstructions
-          : cocktail.strInstructions.slice(0, 150) + '...'}
+          : cocktail.strInstructions.slice(0, 120) + '...'}
         {cocktail.strInstructions.length >= 150 && 
         <button role="button" className=" text-[#00f0ff] " /*  onClick={HANDLERHERE} */>
-          See more
+          &nbsp;See more
         </button>}
       </p>
 

@@ -87,7 +87,7 @@ export default function Explore() {
           Surprise me!
         </button>
       </div>
-      <div className="h-full">{cocktails.map((cocktail: Cocktail) =>
+      <div className="h-full flex flex-col justify-center">{cocktails.map((cocktail: Cocktail) =>
         <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
       )}</div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
