@@ -13,7 +13,7 @@ export default function CardScroller({ cocktails }: { cocktails: Cocktail[] }) {
   return (
     <div
       id="card-scroller"
-      className=" flex items-center gap-24 my-auto max-w-6xl overflow-x-scroll "
+      className=" flex items-center gap-24 my-auto w-screen md:max-w-[85vw] overflow-x-scroll "
       {...events}
       ref={divRef}
     >

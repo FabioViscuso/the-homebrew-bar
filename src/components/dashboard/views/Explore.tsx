@@ -70,29 +70,29 @@ export default function Explore() {
     <div
       className={`${sacramento.className} h-full w-full mt-20 pt-10 flex flex-col items-center justify-between gap-5 overflow-x-hidden `}
     >
-      <div className="flex items-center gap-24">
+      <div className=" w-full flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 lg:gap-24">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             ref={inputValueRef}
-            className={`${poiret.className} text-2xl bg-black bg-opacity-40 [backdrop-filter:blur(4px)] text-[#fff] placeholder:text-white rounded-md w-[clamp(3rem,30vw,30rem)] neon-button-border [box-shadow:0px_0px_40px_1px_#888] `}
+            className={`${poiret.className} text-lg lg:text-2xl bg-black bg-opacity-40 [backdrop-filter:blur(4px)] text-[#fff] placeholder:text-white rounded-md w-[clamp(5rem,30vmax,30rem)] neon-button-border [box-shadow:0px_0px_40px_1px_#888] `}
             type="text"
-            placeholder="Type here, try something like 'Mojito'"
+            placeholder="Type here, try 'Mojito'"
           />
-          <button type="submit" className="text-6xl neon-button-red ">
+          <button type="submit" className="text:2xl md:text-3xl lg:text-6xl neon-button-red ">
             Search
           </button>
         </form>
-        <span className="text-5xl">Or</span>
+        <span className="text:2xl md:text-3xl lg:text-5xl">Or</span>
         <button
           onClick={handleRandomValueSubmit}
           role="button"
-          className="text-5xl neon-button-red neon-button-border "
+          className="text:2xl md:text-3xl lg:text-6xl neon-button-red neon-button-border "
         >
           Surprise me!
         </button>
       </div>
       <div>
-      <p className={`${poiret.className} text-lg mb-2`}>Drag around to scroll</p>
+      <p className={`${poiret.className} text-lg ml-1 mb-2`}>Drag around to scroll</p>
       <CardScroller cocktails={cocktails} />
       </div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
