@@ -26,11 +26,11 @@ export default function About() {
             height={128}
             alt=""
             className={
-              " w-[clamp(3rem,10vmax,9rem)] hero-cocktail neon-icon-flicker md:top-22 lg:top-10 xl:top-14 xl:left-[15rem] "
+              " w-[clamp(3rem,10vmax,9rem)] absolute rotate-[18deg] neon-button-green neon-icon-flicker md:top-22 lg:top-10 xl:top-14 xl:left-[15rem] "
             }
           />
           <p
-            className={`${sacramento.className} hero-sign [font-size:clamp(1rem,2vmin+1rem,5rem)] neon-button-border neon-button-pink neon-icon-flicker bottom-60 md:bottom-22 lg:-bottom-10 xl:bottom-14 right-10 md:right-32 lg:-right-2 `}
+            className={`${sacramento.className}  absolute rotate-[-18deg] [font-size:clamp(1rem,2vmin+1rem,5rem)] neon-button-border neon-button-pink neon-icon-flicker bottom-60 md:bottom-22 lg:-bottom-10 xl:bottom-14 right-10 md:right-32 lg:-right-2 `}
           >
             Always open
           </p>
