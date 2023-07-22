@@ -1,9 +1,22 @@
+"use client";
+
 import { Cocktail } from "@/lib/types/CocktailObj";
 import CocktailCard from "./CocktailCard";
+import { useRef } from "react";
+import { useDraggable } from "react-use-draggable-scroll";
 
 export default function CardScroller({ cocktails }: { cocktails: Cocktail[] }) {
+  const divRef =
+    useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
+  const { events } = useDraggable(divRef);
+
   return (
-    <div className=" my-auto max-w-6xl snap-x snap-mandatory overflow-x-auto flex items-center gap-24 ">
+    <div
+      id="card-scroller"
+      className=" flex items-center gap-24 my-auto max-w-6xl overflow-x-scroll "
+      {...events}
+      ref={divRef}
+    >
       {cocktails.map((cocktail: Cocktail) => (
         <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
       ))}

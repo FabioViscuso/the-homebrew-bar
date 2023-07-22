@@ -91,7 +91,10 @@ export default function Explore() {
           Surprise me!
         </button>
       </div>
+      <div>
+      <p className={`${poiret.className} text-lg mb-2`}>Drag around to scroll</p>
       <CardScroller cocktails={cocktails} />
+      </div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </div>
   );

@@ -51,7 +51,7 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
   }, [isFavorite]);
 
   return (
-    <div className={`${poiret.className} cocktail-card grow-0 shrink-0 snap-center bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-md `}>
+    <div className={`${poiret.className} cocktail-card grow-0 shrink-0 bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-md select-none `}>
       <Image
         src={cocktail.strDrinkThumb}
         alt={`picture of ${cocktail.strDrink}`}

@@ -175,6 +175,11 @@ body {
     }
   }
 
+  #card-scroller::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
   .cocktail-card {
     display: grid;
     grid-template-columns: 8rem 1fr 1fr;
