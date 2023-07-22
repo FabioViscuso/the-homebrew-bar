@@ -41,7 +41,7 @@ export default function Landing() {
       <div
         id="part-2"
         className={
-          " snap-start shrink-0 grow-0 basis-full lg:basis-[35vw] h-[100dvh] w-full [text-shadow:0px_0px_2px_#fff] py-8 px-8 bg-black bg-opacity-20 [backdrop-filter:blur(2px)] flex flex-col "
+          " snap-start shrink-0 grow-0 basis-full lg:basis-[35vw] h-[100dvh] w-full [text-shadow:0px_0px_2px_#fff] py-8 px-8 bg-black bg-opacity-40 [backdrop-filter:blur(2px)] flex flex-col border-t-4 lg:border-l-4 border-[#fff] [box-shadow:0px_2px_200px_0px_#fff] "
         }
       >
         <p className=" text-xl md:text-3xl lg:text-2xl xl:text-3xl ">
