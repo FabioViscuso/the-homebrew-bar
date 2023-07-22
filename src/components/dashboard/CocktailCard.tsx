@@ -33,11 +33,26 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
       localStorage.setItem("favorites", JSON.stringify(actualFavorites));
       setIsFavorite(true);
     }
+    return;
   };
 
-  /* 
-    TODO: need to implement a handeRemoveFromFavorites function ASAP 
-  */
+  const handleRemoveFromFavorites = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.stopPropagation();
+
+    let actualFavorites: Cocktail[] = JSON.parse(
+      localStorage.getItem("favorites") as string
+    );
+    
+    const idToRemove = event.currentTarget.id;
+    const index = actualFavorites.findIndex(cocktail => cocktail.idDrink === idToRemove)
+    actualFavorites.splice(index, 1);
+    localStorage.setItem("favorites", JSON.stringify(actualFavorites));
+
+    setIsFavorite(false);
+    return;
+  };
 
   useEffect(() => {
     const hasMatch = (
@@ -48,7 +63,7 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
     } else {
       setIsFavorite(false);
     }
-  }, [isFavorite]);
+  }, []);
 
   return (
     <div className={`${poiret.className} cocktail-card grow-0 shrink-0 bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-md select-none `}>
@@ -89,8 +104,9 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
 
       {isFavorite ? (
         <button
+          id={cocktail.idDrink}
           role="button"
-          className="favorites-button text-xl text-[#ff0000] [border-top:1px_solid_#fff] bg-red-600 bg-opacity-10" /* onClick={handleRemoveFromFavorites} */
+          className="favorites-button text-xl text-[#ff0000] [border-top:1px_solid_#fff] bg-red-600 bg-opacity-10" onClick={handleRemoveFromFavorites}
         >
           Remove from favorites
         </button>
