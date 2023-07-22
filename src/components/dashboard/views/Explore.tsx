@@ -67,7 +67,7 @@ export default function Explore() {
   }, []);
 
   return (
-    <div
+    <section
       className={`${sacramento.className} h-full w-full mt-20 pt-10 flex flex-col items-center justify-between gap-5 overflow-x-hidden `}
     >
       <div className=" w-full flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 lg:gap-24">
@@ -96,6 +96,6 @@ export default function Explore() {
       <CardScroller cocktails={cocktails} />
       </div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
-    </div>
+    </section>
   );
 }
