@@ -181,7 +181,13 @@ body {
     grid-template-rows: 1fr max-content;
     grid-gap: 10px 0px;
     height: 13rem;
-    max-width: 600px;
+    width: 40rem;
+  }
+  .cocktail-card:not(:first-child) {
+    margin-left: -10px;
+  }
+  .cocktail-card:not(:last-child) {
+    margin-right: -10px;
   }
   
   .image {

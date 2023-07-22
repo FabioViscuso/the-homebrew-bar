@@ -11,26 +11,28 @@ export default function Explore() {
   const inputValueRef: MutableRefObject<HTMLInputElement | null> = useRef(null);
 
   const cocktails = useCocktailsStore((state) => state.cocktails);
-  const updateCocktails = useCocktailsStore((state) => state.updateCocktails);  
+  const updateCocktails = useCocktailsStore((state) => state.updateCocktails);
 
   const syncState = (cocktails: []) => {
-    localStorage.removeItem('lastSearch');
-    localStorage.setItem('lastSearch', JSON.stringify(cocktails));
+    localStorage.removeItem("lastSearch");
+    localStorage.setItem("lastSearch", JSON.stringify(cocktails));
     updateCocktails(cocktails);
-  }
+  };
 
   /* Had to extract this one for use in the useEffect */
   const returnRandomCocktail = async () => {
     const data = await fetch(
       "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-    )
-    const jsonData = await data.json()
+    );
+    const jsonData = await data.json();
     const incomingRandomCocktail = jsonData.drinks;
-    
-    syncState(incomingRandomCocktail);
-  }
 
-  const handleRandomValueSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    syncState(incomingRandomCocktail);
+  };
+
+  const handleRandomValueSubmit = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.stopPropagation();
     returnRandomCocktail();
   };
@@ -45,8 +47,8 @@ export default function Explore() {
     const value = inputValueRef.current!.value.replaceAll(" ", "+");
     const data = await fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`
-    )
-    const jsonData = await data.json()
+    );
+    const jsonData = await data.json();
     const incomingCocktails = jsonData.drinks;
 
     syncState(incomingCocktails);
@@ -54,17 +56,19 @@ export default function Explore() {
 
   /* To avoid unnecessary calls to the API, on each re-render  */
   useEffect(() => {
-    const lastSearch: [] = JSON.parse(localStorage.getItem('lastSearch') as string);
+    const lastSearch: [] = JSON.parse(
+      localStorage.getItem("lastSearch") as string
+    );
     if (lastSearch && lastSearch.length > 0) {
       updateCocktails(lastSearch);
     } else {
       returnRandomCocktail();
     }
-  }, [])
+  }, []);
 
   return (
     <div
-      className={`${sacramento.className} h-full w-full mt-20 pt-10 flex flex-col items-center justify-between gap-5 `}
+      className={`${sacramento.className} h-full w-full mt-20 pt-10 flex flex-col items-center justify-between gap-5 overflow-x-hidden `}
     >
       <div className="flex items-center gap-24">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -87,9 +91,11 @@ export default function Explore() {
           Surprise me!
         </button>
       </div>
-      <div className="h-full flex flex-col justify-center">{cocktails.map((cocktail: Cocktail) =>
-        <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
-      )}</div>
+      <div className=" my-auto max-w-6xl snap-x snap-mandatory overflow-x-auto flex items-center gap-24 ">
+        {cocktails.map((cocktail: Cocktail) => (
+          <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
+        ))}
+      </div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </div>
   );
