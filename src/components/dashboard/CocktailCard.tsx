@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 
 import { Cocktail } from "@/lib/types/CocktailObj";
+
+import FullCocktailCard from "./FullCocktailCard";
 
 import { Poiret_One } from "next/font/google";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
@@ -12,6 +15,7 @@ export interface CocktailCardProps {
 
 export default function CocktailCard({ cocktail }: CocktailCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isFullCardOpen, setIsFullCardOpen] = useState(false);
 
   const handleSaveToFavorites = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -44,15 +48,21 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
     let actualFavorites: Cocktail[] = JSON.parse(
       localStorage.getItem("favorites") as string
     );
-    
+
     const idToRemove = event.currentTarget.id;
-    const index = actualFavorites.findIndex(cocktail => cocktail.idDrink === idToRemove)
+    const index = actualFavorites.findIndex(
+      (cocktail) => cocktail.idDrink === idToRemove
+    );
     actualFavorites.splice(index, 1);
     localStorage.setItem("favorites", JSON.stringify(actualFavorites));
 
     setIsFavorite(false);
     return;
   };
+
+  const handleFullCardToggle = () => {
+    setIsFullCardOpen(!isFullCardOpen)
+  }
 
   useEffect(() => {
     const hasMatch = (
@@ -66,7 +76,9 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
   }, []);
 
   return (
-    <div className={`${poiret.className} cocktail-card grow-0 shrink-0 bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-md select-none `}>
+    <div
+      className={`${poiret.className} cocktail-card grow-0 shrink-0 bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-md select-none `}
+    >
       <Image
         src={cocktail.strDrinkThumb}
         alt={`picture of ${cocktail.strDrink}`}
@@ -95,18 +107,24 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
       <p className="instructions text-lg">
         {cocktail.strInstructions.length < 120
           ? cocktail.strInstructions
-          : cocktail.strInstructions.slice(0, 120) + '...'}
-        {cocktail.strInstructions.length >= 120 && 
-        <button role="button" className=" text-[#00f0ff] " /*  onClick={HANDLERHERE} */>
-          &nbsp;See more
-        </button>}
+          : cocktail.strInstructions.slice(0, 120) + "..."}
+        {cocktail.strInstructions.length >= 120 && (
+          <button
+            role="button"
+            className=" text-[#00f0ff] "
+            onClick={handleFullCardToggle}
+          >
+            &nbsp;See more
+          </button>
+        )}
       </p>
 
       {isFavorite ? (
         <button
           id={cocktail.idDrink}
           role="button"
-          className="favorites-button text-xl text-[#ff0000] [border-top:1px_solid_#fff] bg-red-600 bg-opacity-10" onClick={handleRemoveFromFavorites}
+          className="favorites-button text-xl text-[#ff0000] [border-top:1px_solid_#fff] bg-red-600 bg-opacity-10"
+          onClick={handleRemoveFromFavorites}
         >
           Remove from favorites
         </button>
@@ -119,6 +137,14 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
           Save to favorites
         </button>
       )}
+      {isFullCardOpen &&
+        createPortal(
+          <FullCocktailCard
+            cocktail={cocktail}
+            onClick={handleFullCardToggle}
+          />,
+          document.querySelector("#application")!
+        )}
     </div>
   );
 }
