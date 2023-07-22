@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { Poiret_One } from "next/font/google";
 import { Cocktail } from "@/lib/types/CocktailObj";
+
+import { Poiret_One } from "next/font/google";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 
 export interface CocktailCardProps {
   cocktail: Cocktail;
 }
 
-export function CocktailCard({ cocktail }: CocktailCardProps) {
+export default function CocktailCard({ cocktail }: CocktailCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleSaveToFavorites = (
@@ -50,7 +51,7 @@ export function CocktailCard({ cocktail }: CocktailCardProps) {
   }, [isFavorite]);
 
   return (
-    <div className={`${poiret.className} cocktail-card bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-r-md `}>
+    <div className={`${poiret.className} cocktail-card bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-md `}>
       <Image
         src={cocktail.strDrinkThumb}
         alt={`picture of ${cocktail.strDrink}`}
@@ -105,5 +106,3 @@ export function CocktailCard({ cocktail }: CocktailCardProps) {
     </div>
   );
 }
-
-export default CocktailCard;
