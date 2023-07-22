@@ -15,10 +15,9 @@ interface Props {
 export default function HamburgerMenuModal({
   currentView,
   viewSelector,
-  onClick,
 }: Props) {
   return (
-    <main className=" fixed top-20 bottom-0 left-0 right-0 z-50 bg-black bg-opacity-40 [backdrop-filter:blur(4px)] ">
+    <section className=" fixed top-20 bottom-0 left-0 right-0 z-50 bg-black bg-opacity-40 [backdrop-filter:blur(4px)] ">
       <div className={`${sacramento.className} flex flex-col justify-center items-center gap-16 h-full `}>
         <DashboardLink
           id={Views.Explore}
@@ -42,6 +41,6 @@ export default function HamburgerMenuModal({
           About
         </DashboardLink>
       </div>
-    </main>
+    </section>
   );
 }
