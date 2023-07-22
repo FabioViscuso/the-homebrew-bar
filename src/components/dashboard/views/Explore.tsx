@@ -64,7 +64,7 @@ export default function Explore() {
 
   return (
     <div
-      className={`${sacramento.className} h-full w-full mt-20 pt-10 flex flex-col items-center justify-between `}
+      className={`${sacramento.className} h-full w-full mt-20 pt-10 flex flex-col items-center justify-between gap-5 `}
     >
       <div className="flex items-center gap-24">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -87,7 +87,7 @@ export default function Explore() {
           Surprise me!
         </button>
       </div>
-      <div>{cocktails.map((cocktail: Cocktail) =>
+      <div className="h-full">{cocktails.map((cocktail: Cocktail) =>
         <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
       )}</div>
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>

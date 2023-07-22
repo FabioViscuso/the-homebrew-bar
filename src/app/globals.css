@@ -24,11 +24,11 @@ body {
   .hero-cocktail {
     position: absolute;
     transform: rotate(18deg);
-    --neon-color: #39FF14;
+    --neon-color: #39ff14;
     filter: drop-shadow(0rem 0rem 4px var(--text-color))
       drop-shadow(0rem 0rem 1px var(--text-color))
       drop-shadow(0rem 0rem 9px var(--neon-color))
-      drop-shadow(0rem 0rem 40px var(--neon-color));    
+      drop-shadow(0rem 0rem 40px var(--neon-color));
   }
   .hero-sign {
     position: absolute;
@@ -40,21 +40,21 @@ body {
     padding: 1.5rem 2rem;
   }
   .neon-button-pink {
-    --neon-color: #FF69B4;
+    --neon-color: #ff69b4;
     filter: drop-shadow(0rem 0rem 4px var(--text-color))
-    drop-shadow(0rem 0rem 1px var(--text-color))
-    drop-shadow(0rem 0rem 9px var(--neon-color))
-    drop-shadow(0rem 0rem 40px var(--neon-color));  
+      drop-shadow(0rem 0rem 1px var(--text-color))
+      drop-shadow(0rem 0rem 9px var(--neon-color))
+      drop-shadow(0rem 0rem 40px var(--neon-color));
   }
   .neon-button-red {
     --neon-color: #5c0000;
     --text-color: #aaa;
     color: #eee;
     filter: drop-shadow(0rem 0rem 4px var(--text-color))
-    drop-shadow(0rem 0rem 1px var(--text-color))
-    drop-shadow(0rem 0rem 9px var(--neon-color))
-    drop-shadow(0rem 0rem 40px var(--neon-color));
-    transition: all .2s linear;
+      drop-shadow(0rem 0rem 1px var(--text-color))
+      drop-shadow(0rem 0rem 9px var(--neon-color))
+      drop-shadow(0rem 0rem 40px var(--neon-color));
+    transition: all 0.2s linear;
   }
   .neon-button-red:hover {
     --neon-color: #ff0000;
@@ -64,29 +64,29 @@ body {
 
   .neon-blue {
     color: var(--text-color);
-    --neon-color: #00F0FF; /* Override the default neon color with specific color */
+    --neon-color: #00f0ff; /* Override the default neon color with specific color */
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
-    0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
-    0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
+      0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
+      0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
   }
   .neon-red {
     color: var(--text-color);
     --neon-color: #ff0000; /* Override the default neon color with specific color */
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
-    0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
-    0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
-  }  
-  
+      0 0 40px var(--neon-color), 0 0 70px var(--neon-color),
+      0 0 80px var(--neon-color), 0 0 100px var(--neon-color);
+  }
+
   .neon-icon-flicker {
     animation: flicker-icon 3s 0s infinite;
   }
   .neon-flicker {
-    animation: flicker-text 3s .2s infinite;
+    animation: flicker-text 3s 0.2s infinite;
   }
   .bounce {
     animation: bounce 2s infinite ease-in-out;
   }
-  
+
   @keyframes flicker-text {
     0%,
     19.99%,
@@ -122,9 +122,9 @@ body {
     70%,
     100% {
       filter: drop-shadow(0rem 0rem 4px var(--text-color))
-      drop-shadow(0rem 0rem 1px var(--text-color))
-      drop-shadow(0rem 0rem 9px var(--neon-color))
-      drop-shadow(0rem 0rem 40px var(--neon-color));
+        drop-shadow(0rem 0rem 1px var(--text-color))
+        drop-shadow(0rem 0rem 9px var(--neon-color))
+        drop-shadow(0rem 0rem 40px var(--neon-color));
     }
     20%,
     21.99%,
@@ -133,24 +133,62 @@ body {
     65%,
     69.99% {
       filter: drop-shadow(0rem 0rem 0px var(--text-color))
-      drop-shadow(0rem 0rem 1px var(--text-color))
-      drop-shadow(0rem 0rem 2px var(--neon-color))
-      drop-shadow(0rem 0rem 20px var(--neon-color));
+        drop-shadow(0rem 0rem 1px var(--text-color))
+        drop-shadow(0rem 0rem 2px var(--neon-color))
+        drop-shadow(0rem 0rem 20px var(--neon-color));
     }
   }
-}
 
-@keyframes bounce {
-  0% {
-    transform: translateY(-12px);
+  @keyframes bounce {
+    0% {
+      transform: translateY(-12px);
+    }
+    30% {
+      transform: translateY(0px);
+    }
+    40% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-12px);
+    }
   }
-  30% {
-    transform: translateY(0px);
+
+  .cocktail-card {
+    display: grid;
+    grid-template-columns: 8rem 1fr 1fr;
+    grid-template-rows: 1fr max-content;
+    grid-gap: 10px 0px;
+    height: 13rem;
+    max-width: 600px;
   }
-  40% {
-    transform: translateY(0px);
+  
+  .image {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
   }
-  100% {
-    transform: translateY(-12px);
+  
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire container */
+  }
+  
+  .ingredients {
+    max-height: 12rem;
+    overflow-y: scroll;
+    grid-column: 2 / 3; /* Both sections span the second column */
+    padding: 5px 8px;
+  }
+
+  .instructions{
+    grid-column: 3 / 4;
+    padding: 5px 8px;
+
+  }
+  
+  .favorites-button {
+    grid-row: 2 / -1;
+    grid-column: 2 / -1; /* Button spans both columns */
   }
 }

@@ -2,15 +2,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { Poiret_One } from "next/font/google";
+import { Cocktail } from "@/lib/types/CocktailObj";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
-
-export interface Cocktail {
-  idDrink: string;
-  strDrink: string;
-  strDrinkThumb: string;
-  strInstructions: string;
-  [key: string]: string;
-}
 
 export interface CocktailCardProps {
   cocktail: Cocktail;
@@ -27,9 +20,9 @@ export function CocktailCard({ cocktail }: CocktailCardProps) {
     let actualFavorites: Cocktail[] = JSON.parse(
       localStorage.getItem("favorites") as string
     );
-    
+
     if (!actualFavorites) {
-        actualFavorites = [];
+      actualFavorites = [];
     }
     const hasMatch = actualFavorites.some(
       (item: Cocktail) => item.idDrink === cocktail.idDrink
@@ -57,17 +50,16 @@ export function CocktailCard({ cocktail }: CocktailCardProps) {
   }, [isFavorite]);
 
   return (
-    <div className={`${poiret.className} flex `}>
+    <div className={`${poiret.className} cocktail-card bg-black bg-opacity-70 [backdrop-filter:blur(4px)] rounded-r-md `}>
       <Image
         src={cocktail.strDrinkThumb}
         alt={`picture of ${cocktail.strDrink}`}
-        width={100}
-        height={100}
-        className=" w-14 h-14 rounded-l-md"
+        width={200}
+        height={200}
+        className="image w-full h-full rounded-l-md object-cover"
       />
-    <div>
-      <p className="text-lg">{cocktail.strDrink}</p>
-      <div>
+      <div className="ingredients">
+        <p className="text-2xl text-[#00f0ff] mb-2">{cocktail.strDrink}</p>
         {Object.keys(cocktail).map((key: string) => {
           if (key.startsWith("strIngredient") && cocktail[key]) {
             const ingredientIndex = key.substring(13);
@@ -84,22 +76,32 @@ export function CocktailCard({ cocktail }: CocktailCardProps) {
         })}
       </div>
 
-      <p className="text-lg">
-        {cocktail.strInstructions}
-      <button role="button" /*  onClick={HANDLERHERE} */>&nbsp; See more</button>
-    </p>
+      <p className="instructions text-lg">
+        {cocktail.strInstructions.length < 150
+          ? cocktail.strInstructions
+          : cocktail.strInstructions.slice(0, 150) + '...'}
+        {cocktail.strInstructions.length >= 150 && 
+        <button role="button" className=" text-[#00f0ff] " /*  onClick={HANDLERHERE} */>
+          See more
+        </button>}
+      </p>
 
       {isFavorite ? (
-        <button role="button" /* onClick={handleRemoveFromFavorites} */>
-          Remove from collection
+        <button
+          role="button"
+          className="favorites-button text-xl text-[#ff0000] [border-top:1px_solid_#fff] bg-red-600 bg-opacity-10" /* onClick={handleRemoveFromFavorites} */
+        >
+          Remove from favorites
         </button>
       ) : (
-        <button role="button" onClick={handleSaveToFavorites}>
-          Save to collection
+        <button
+          role="button"
+          className="favorites-button text-xl text-[#00f0ff] [border-top:1px_solid_#fff] bg-teal-500 bg-opacity-10"
+          onClick={handleSaveToFavorites}
+        >
+          Save to favorites
         </button>
       )}
-
-    </div>
     </div>
   );
 }
