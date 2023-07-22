@@ -1,9 +1,9 @@
 import { FormEvent, MutableRefObject, useEffect, useRef } from "react";
 import useCocktailsStore from "@/store/store";
 
-import { Cocktail } from "@/lib/types/CocktailObj";
-import CocktailCard from "../CocktailCard";
+
 import { Poiret_One, Sacramento } from "next/font/google";
+import CardScroller from "../CardScroller";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 
@@ -91,11 +91,7 @@ export default function Explore() {
           Surprise me!
         </button>
       </div>
-      <div className=" my-auto max-w-6xl snap-x snap-mandatory overflow-x-auto flex items-center gap-24 ">
-        {cocktails.map((cocktail: Cocktail) => (
-          <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
-        ))}
-      </div>
+      <CardScroller cocktails={cocktails} />
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </div>
   );
