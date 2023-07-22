@@ -81,7 +81,7 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
         {cocktail.strInstructions.length < 120
           ? cocktail.strInstructions
           : cocktail.strInstructions.slice(0, 120) + '...'}
-        {cocktail.strInstructions.length >= 150 && 
+        {cocktail.strInstructions.length >= 120 && 
         <button role="button" className=" text-[#00f0ff] " /*  onClick={HANDLERHERE} */>
           &nbsp;See more
         </button>}
