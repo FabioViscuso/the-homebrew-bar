@@ -7,6 +7,7 @@ import { Cocktail } from "@/lib/types/CocktailObj";
 import FullCocktailCard from "./FullCocktailCard";
 
 import { Poiret_One } from "next/font/google";
+import useCocktailsStore from "@/store/store";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 
 export interface CocktailCardProps {
@@ -16,6 +17,9 @@ export interface CocktailCardProps {
 export default function CocktailCard({ cocktail }: CocktailCardProps) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFullCardOpen, setIsFullCardOpen] = useState(false);
+
+  const addToFavs = useCocktailsStore(state => state.addToFavorites);
+  const removeFromFavs = useCocktailsStore(state => state.removeFromFavorites);
 
   const handleSaveToFavorites = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -35,9 +39,9 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
     if (!hasMatch) {
       actualFavorites.push(cocktail);
       localStorage.setItem("favorites", JSON.stringify(actualFavorites));
+      addToFavs(cocktail)
       setIsFavorite(true);
     }
-    return;
   };
 
   const handleRemoveFromFavorites = (
@@ -56,8 +60,8 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
     actualFavorites.splice(index, 1);
     localStorage.setItem("favorites", JSON.stringify(actualFavorites));
 
+    removeFromFavs(cocktail)
     setIsFavorite(false);
-    return;
   };
 
   const handleFullCardToggle = () => {
