@@ -23,7 +23,7 @@ export default function Favorites() {
     removeAllFavs();
   };
 
-  let localFavorites: Cocktail[] = favs || JSON.parse(
+  let localFavorites: Cocktail[] = JSON.parse(
     localStorage.getItem("favorites") as string
   ) || [];
   const filteredLocalFavorites = localFavorites?.filter((cocktail) =>
@@ -31,11 +31,11 @@ export default function Favorites() {
   );
 
   useEffect(() => {
-    console.log(localFavorites)
-    if (localFavorites.length === 0) {
+    if (localFavorites.length > 0) {
       localFavorites.forEach((cocktail) => addToFavs(cocktail));
     }
-  }, [addToFavs,]);
+    console.log(localFavorites, favs)
+  }, [addToFavs]);
 
   return (
     <section
