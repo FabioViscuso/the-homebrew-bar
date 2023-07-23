@@ -1,14 +1,13 @@
-import { FormEvent, MutableRefObject, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import useCocktailsStore from "@/store/store";
 
-import { Poiret_One, Sacramento } from "next/font/google";
 import CardScroller from "../CardScroller";
-const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
+import InputGroup from "../InputGroup";
+
+import { Sacramento } from "next/font/google";
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 
 export default function Explore() {
-  const inputValueRef: MutableRefObject<HTMLInputElement | null> = useRef(null);
-
   const cocktails = useCocktailsStore((state) => state.cocktails);
   const updateCocktails = useCocktailsStore((state) => state.updateCocktails);
 
@@ -29,30 +28,6 @@ export default function Explore() {
     syncState(incomingRandomCocktail);
   };
 
-  const handleRandomValueSubmit = async (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.stopPropagation();
-    returnRandomCocktail();
-  };
-
-  /* 
-  TODO: future development will see this function a bit more generic.
-  TODO: as more filters are added, it will decide which endpoint to call with which data
-   */
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-
-    const value = inputValueRef.current!.value.replaceAll(" ", "+");
-    const data = await fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`
-    );
-    const jsonData = await data.json();
-    const incomingCocktails = jsonData.drinks;
-
-    syncState(incomingCocktails);
-  };
-
   /* To avoid unnecessary calls to the API, on each re-render  */
   useEffect(() => {
     const lastSearch: [] = JSON.parse(
@@ -69,47 +44,8 @@ export default function Explore() {
     <section
       className={`${sacramento.className} h-full w-full mt-20 flex flex-col items-center justify-between gap-5 overflow-x-hidden `}
     >
-      <div id="explore-input-group" className=" pt-10 w-screen lg:w-full overflow-x-scroll snap-x snap-mandatory lg:overflow-hidden flex flex-row flex-nowrap lg:justify-center items-center gap-6 md:gap-12 lg:gap-24 ">
-        <div className=" w-screen lg:w-auto snap-start grow-0 shrink-0 flex items-center gap-6 md:gap-12 lg:gap-24 px-12 pb-10 lg:px-0 lg:pb-0 ">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full ">
-            <input
-              ref={inputValueRef}
-              className={`${poiret.className} text-lg lg:text-2xl bg-black bg-opacity-40 [backdrop-filter:blur(4px)] text-[#fff] placeholder:text-white rounded-md lg:w-[clamp(5rem,30vmax,30rem)] neon-button-border [box-shadow:0px_0px_40px_1px_#888] `}
-              type="text"
-              placeholder="Type here, try 'Mojito'"
-            />
-            <button
-              type="submit"
-              className=" text-4xl lg:text-6xl neon-button-red "
-            >
-              Search
-            </button>
-          </form>
-
-          <span className=" text-5xl hidden lg:block ">
-            Or
-          </span>
-          <p className=" text-4xl flex lg:hidden flex-col items-center [text-shadow:0px_0px_2px_#fff] ">
-            Or <span className=" [text-shadow:0px_0px_4px_#fff] ">⇨</span>
-          </p>
-        </div>
-
-        <div className=" w-screen lg:w-auto snap-start grow-0 shrink-0 flex justify-center items-center ">
-          <button
-            onClick={handleRandomValueSubmit}
-            role="button"
-            className=" text-5xl lg:text-6xl neon-button-red neon-button-border "
-          >
-            Surprise me!
-          </button>
-        </div>
-      </div>
-      <div>
-        <p className={`${poiret.className} text-lg ml-1 mb-2`}>
-          Drag around to scroll
-        </p>
-        <CardScroller cocktails={cocktails} />
-      </div>
+      <InputGroup />
+      <CardScroller cocktails={cocktails} />
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </section>
   );
