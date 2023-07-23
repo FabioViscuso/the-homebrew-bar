@@ -73,7 +73,7 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
     } else {
       setIsFavorite(false);
     }
-  }, []);
+  }, [cocktail.idDrink]);
 
   /* 
   TODO: Fuse the two different cards into one adaptable component
