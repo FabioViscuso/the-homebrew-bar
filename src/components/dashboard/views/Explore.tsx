@@ -17,17 +17,18 @@ export default function Explore() {
 
   /* To avoid unnecessary calls to the API, on each re-render  */
   useEffect(() => {
+    async function firstRetrieve () {
+      const incomingRandomCocktail: Cocktail[] = await returnRandomCocktail();
+      saveToLocal(incomingRandomCocktail)
+      updateCocktails(incomingRandomCocktail)
+    }
     const lastSearch: [] = JSON.parse(
       localStorage.getItem("lastSearch") as string
     );
     if (lastSearch && lastSearch.length > 0) {
       updateCocktails(lastSearch);
     } else {
-      (async () => {
-        const incomingRandomCocktail: Cocktail[] = await returnRandomCocktail();
-        saveToLocal(incomingRandomCocktail)
-        updateCocktails(incomingRandomCocktail)
-      })
+      firstRetrieve()
     }
   }, [updateCocktails]);
 
