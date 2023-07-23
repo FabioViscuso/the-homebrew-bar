@@ -1,5 +1,9 @@
 import useCocktailsStore from "@/store/store";
 import { FormEvent, MutableRefObject, useRef } from "react";
+
+import { returnRandomCocktail } from "@/lib/utils/returnRandCocktail";
+import { saveToLocal } from "@/lib/utils/saveToLocal";
+
 import { Poiret_One } from "next/font/google";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 
@@ -7,28 +11,13 @@ export default function InputGroup() {
   const inputValueRef: MutableRefObject<HTMLInputElement | null> = useRef(null);
   const updateCocktails = useCocktailsStore((state) => state.updateCocktails);
 
-  const syncState = (cocktails: []) => {
-    localStorage.removeItem("lastSearch");
-    localStorage.setItem("lastSearch", JSON.stringify(cocktails));
-    updateCocktails(cocktails);
-  };
-
-  /* Had to extract this one for use in the useEffect */
-  const returnRandomCocktail = async () => {
-    const data = await fetch(
-      "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-    );
-    const jsonData = await data.json();
-    const incomingRandomCocktail = jsonData.drinks;
-
-    syncState(incomingRandomCocktail);
-  };
-
   const handleRandomValueSubmit = async (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.stopPropagation();
-    returnRandomCocktail();
+    const incomingRandomCocktail = await returnRandomCocktail()
+    saveToLocal(incomingRandomCocktail);
+    updateCocktails(incomingRandomCocktail)
   };
 
   /* 
@@ -45,7 +34,8 @@ export default function InputGroup() {
     const jsonData = await data.json();
     const incomingCocktails = jsonData.drinks;
 
-    syncState(incomingCocktails);
+    saveToLocal(incomingCocktails);
+    updateCocktails(incomingCocktails)
   };
 
   return (

@@ -4,29 +4,16 @@ import useCocktailsStore from "@/store/store";
 import CardScroller from "../CardScroller";
 import InputGroup from "../InputGroup";
 
+import { returnRandomCocktail } from "@/lib/utils/returnRandCocktail";
+import { saveToLocal } from "@/lib/utils/saveToLocal";
+
 import { Sacramento } from "next/font/google";
+import { Cocktail } from "@/lib/types/CocktailObj";
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 
 export default function Explore() {
   const cocktails = useCocktailsStore((state) => state.cocktails);
   const updateCocktails = useCocktailsStore((state) => state.updateCocktails);
-
-  const syncState = (cocktails: []) => {
-    localStorage.removeItem("lastSearch");
-    localStorage.setItem("lastSearch", JSON.stringify(cocktails));
-    updateCocktails(cocktails);
-  };
-
-  /* Had to extract this one for use in the useEffect */
-  const returnRandomCocktail = async () => {
-    const data = await fetch(
-      "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-    );
-    const jsonData = await data.json();
-    const incomingRandomCocktail = jsonData.drinks;
-
-    syncState(incomingRandomCocktail);
-  };
 
   /* To avoid unnecessary calls to the API, on each re-render  */
   useEffect(() => {
@@ -36,9 +23,13 @@ export default function Explore() {
     if (lastSearch && lastSearch.length > 0) {
       updateCocktails(lastSearch);
     } else {
-      returnRandomCocktail();
+      (async () => {
+        const incomingRandomCocktail: Cocktail[] = await returnRandomCocktail();
+        saveToLocal(incomingRandomCocktail)
+        updateCocktails(incomingRandomCocktail)
+      })
     }
-  }, []);
+  }, [updateCocktails]);
 
   return (
     <section
