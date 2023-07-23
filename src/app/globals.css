@@ -27,6 +27,15 @@
   border: 1px solid #191919;
 }
 
+#explore-input-group::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+#card-scroller::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 
 body {
   min-height: 100svh;
@@ -167,11 +176,6 @@ body {
     100% {
       transform: translateY(-12px);
     }
-  }
-
-  #card-scroller::-webkit-scrollbar {
-    width: 0;
-    height: 0;
   }
 
   .cocktail-card {
