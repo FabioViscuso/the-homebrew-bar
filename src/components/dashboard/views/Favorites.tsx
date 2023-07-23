@@ -1,37 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CardScroller from "../CardScroller";
 
 import { Cocktail } from "@/lib/types/CocktailObj";
 
 import { Sacramento } from "next/font/google";
+import useCocktailsStore from "@/store/store";
 const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 
 export default function Favorites() {
-  const [favorites, setFavorites] = useState([] as Cocktail[]);
-
+  const addToFavs = useCocktailsStore(state => state.addToFavorites)
+  const removeAllFavs = useCocktailsStore(state => state.clearAllFavorites)
+  const favCocktails = useCocktailsStore(state => state.favoriteCocktails);
+  
   const handleFavoritesCleanup = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.stopPropagation();
 
     localStorage.setItem("favorites", JSON.stringify([]));
-    setFavorites([]);
+    removeAllFavs();
   };
 
+  const locals: Cocktail[] = JSON.parse(localStorage.getItem('favorites') as string)
   useEffect(() => {
-    const localFavorites: Cocktail[] = JSON.parse(
-      localStorage.getItem("favorites") as string
-    );
-    if (localFavorites) {
-      setFavorites(localFavorites);
-    }
-  }, [favorites]);
+    locals.forEach((cocktail) => addToFavs(cocktail))
+  }, []);
 
   return (
     <section
       className={`${sacramento.className} h-full w-full mt-20 pt-10 flex flex-col items-center justify-between gap-5 overflow-x-hidden `}
     >
-      {favorites && favorites.length > 0 && (
+      {locals && locals.length > 0 && (
         <button
           role="button"
           onClick={handleFavoritesCleanup}
@@ -40,8 +39,8 @@ export default function Favorites() {
           Clear Favorites
         </button>
       )}
-      {favorites && favorites.length > 0 ? (
-        <CardScroller cocktails={favorites} />
+      {locals && locals.length > 0 ? (
+        <CardScroller cocktails={locals} />
       ) : (
         <h2 className={` text-3xl md:text-4xl lg:text-6xl neon-blue `}>
           No favorites! Explore some more
