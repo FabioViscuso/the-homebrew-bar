@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import CardScroller from "../CardScroller";
 import useCocktailsStore from "@/store/store";
 
@@ -10,6 +10,7 @@ const sacramento = Sacramento({ subsets: ["latin"], weight: "400" });
 
 export default function Favorites() {
   const [searchString, setSearchString] = useState("");
+  const favs = useCocktailsStore(e => e.favoriteCocktails)
   const addToFavs = useCocktailsStore((state) => state.addToFavorites);
   const removeAllFavs = useCocktailsStore((state) => state.clearAllFavorites);
 
@@ -18,20 +19,23 @@ export default function Favorites() {
   ) => {
     event.stopPropagation();
 
+    localStorage.removeItem("favorites");
     removeAllFavs();
-    localStorage.setItem("favorites", JSON.stringify([]));
   };
 
-  const localFavorites: Cocktail[] = JSON.parse(
+  let localFavorites: Cocktail[] = favs || JSON.parse(
     localStorage.getItem("favorites") as string
-  );
-  useEffect(() => {
-    localFavorites.forEach((cocktail) => addToFavs(cocktail));
-  }, []);
-
-  const filteredLocalFavorites = localFavorites.filter((cocktail) =>
+  ) || [];
+  const filteredLocalFavorites = localFavorites?.filter((cocktail) =>
     cocktail.strDrink.toLowerCase().includes(searchString.toLowerCase())
   );
+
+  useEffect(() => {
+    console.log(localFavorites)
+    if (localFavorites.length === 0) {
+      localFavorites.forEach((cocktail) => addToFavs(cocktail));
+    }
+  }, [addToFavs,]);
 
   return (
     <section
@@ -65,8 +69,12 @@ export default function Favorites() {
         searchString.length > 0 && (
           <CardScroller cocktails={filteredLocalFavorites} />
         )}
-      {localFavorites.length === 0  && <h2>No Favorites</h2>}
-      {filteredLocalFavorites.length === 0 && searchString.length > 0 && <h2 className="text-6xl neon-red">No Match</h2>}
+      {localFavorites.length === 0 && (
+        <h2 className="text-6xl neon-red">No Favorites</h2>
+      )}
+      {filteredLocalFavorites.length === 0 && searchString.length > 0 && (
+        <h2 className="text-6xl neon-red">No Match</h2>
+      )}
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </section>
   );
