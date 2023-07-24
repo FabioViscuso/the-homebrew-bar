@@ -63,8 +63,9 @@ However, it's easier to keep track of incremental changes in one area.
 ## Dev diary & Final thoughts
 
 Being it the first time I incorporate a prototyping, UI designing and issue tracking system in one of my personal projects, I came across multiple challenges.
-While, in the end, I could deliver a full working example in just one week, there are a couple of "misses" in the flow:
+While, in the end, I could deliver a full working example in just one week, there are some "misses" in the flow:
 - one obvious - and important - abscence is the one of a design system, only partially hinted in the kanban.
+- some elements, namely the modals, are absent from the mockups
 - also, it would have been nice if I could include a diagram that explains the data flow in the application.
 
 The main design process took about 4 days, after which I started implementing the application.
