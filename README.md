@@ -16,6 +16,7 @@ The dashboard is made of 4 main components:
 - View #3: About - Acts like some sort of footer and shows simple information about the developer, the stack used for the project, as well as a link to the GitHub repository.
 
 ## Directory structure
+```
 src
     app
         dashboard 
@@ -28,6 +29,7 @@ src
         types   utils
 
     store
+```
 
 Explanation:
 Names in the same indentation level are siblings, further indented name beneath them are subfolders
