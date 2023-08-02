@@ -52,7 +52,7 @@ export default function InputGroup() {
   return (
     <div
       id="explore-input-group"
-      className=" pt-10 w-screen lg:w-full overflow-x-scroll snap-x snap-mandatory lg:overflow-hidden flex flex-row flex-nowrap lg:justify-center items-center gap-6 md:gap-12 lg:gap-24 "
+      className=" py-10 w-screen lg:w-full overflow-x-scroll snap-x snap-mandatory lg:overflow-hidden flex flex-row flex-nowrap lg:justify-center items-center gap-6 md:gap-12 lg:gap-24 "
     >
       <div className=" w-screen lg:w-auto snap-start grow-0 shrink-0 flex items-center gap-6 md:gap-12 lg:gap-24 px-12 pb-10 lg:px-0 lg:pb-0 ">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full ">
