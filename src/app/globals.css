@@ -213,6 +213,11 @@ body {
   
   .favorites-button {
     grid-row: 2 / -1;
-    grid-column: 2 / -1;
+    grid-column: 3 / 4;
+  }
+
+  .open-modal-button {
+    grid-row: 2 / -1;
+    grid-column: 2 / 3;
   }
 }
