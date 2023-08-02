@@ -4,6 +4,8 @@ import { FormEvent, MutableRefObject, useRef } from "react";
 import { returnRandomCocktail } from "@/lib/utils/returnRandCocktail";
 import { saveToLocal } from "@/lib/utils/saveToLocal";
 
+import { Cocktail } from "@/lib/types/CocktailObj";
+
 import { Poiret_One } from "next/font/google";
 const poiret = Poiret_One({ subsets: ["latin"], weight: "400" });
 
@@ -15,15 +17,15 @@ export default function InputGroup() {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.stopPropagation();
-    const incomingRandomCocktail = await returnRandomCocktail()
+    const incomingRandomCocktail = await returnRandomCocktail();
     saveToLocal(incomingRandomCocktail);
-    updateCocktails(incomingRandomCocktail)
+    updateCocktails(incomingRandomCocktail);
   };
 
   /* 
     TODO: future development will see this function a bit more generic.
     TODO: as more filters are added, it will decide which endpoint to call with which data
-     */
+  */
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -31,11 +33,20 @@ export default function InputGroup() {
     const data = await fetch(
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`
     );
-    const jsonData = await data.json();
-    const incomingCocktails = jsonData.drinks;
+
+    let jsonData: { drinks: [] | null } = await data.json();
+    let incomingCocktails: Cocktail[] = [];
+
+    /*
+      If the user sends a string that has no match in the api, it will return
+      a "drinks" property with a value of null, which isn't mappable
+    */
+    if (Array.isArray(jsonData.drinks)) {
+      incomingCocktails = jsonData.drinks;
+    }
 
     saveToLocal(incomingCocktails);
-    updateCocktails(incomingCocktails)
+    updateCocktails(incomingCocktails);
   };
 
   return (

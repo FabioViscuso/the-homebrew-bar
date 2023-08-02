@@ -37,7 +37,7 @@ export default function Explore() {
       className={`${sacramento.className} h-full w-full mt-20 flex flex-col items-center justify-between gap-5 overflow-x-hidden `}
     >
       <InputGroup />
-      <CardScroller cocktails={cocktails} />
+      {cocktails.length > 0 ? <CardScroller cocktails={cocktails} /> : <h2 className="text-6xl neon-red">No Match</h2>}
       <div className=" w-full h-0 border-b-4 border-white [box-shadow:1px_0px_200px_10px_#fff]"></div>
     </section>
   );
