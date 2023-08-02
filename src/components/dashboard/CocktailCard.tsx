@@ -128,6 +128,12 @@ export default function CocktailCard({ cocktail }: CocktailCardProps) {
           )}
         </p>
 
+        <button className="open-modal-button text-xl text-[#00f0ff] [border-top:1px_solid_#fff] [border-right:1px_solid_#fff] bg-teal-500 bg-opacity-10"
+          onClick={handleFullCardToggle}
+        >
+          Open full card
+        </button>
+
         {isFavorite ? (
           <button
             id={cocktail.idDrink}
